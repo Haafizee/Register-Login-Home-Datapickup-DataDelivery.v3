@@ -7,36 +7,36 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.perdatech.databasewithimage.DataModel.User;
 import com.perdatech.databasewithimage.DataModel.DataConverter;
-import com.perdatech.databasewithimage.DataModel.User;
+import com.perdatech.databasewithimage.DataModel.Donator;
 
 import java.util.List;
 
-public class UserRecycler extends RecyclerView.Adapter<UserViewHolder> {
+public class DonatorRecycler extends RecyclerView.Adapter<DonatorViewHolder> {
 
-    List<User>data;
-    public UserRecycler(List<User>users){
-        data = users;
+    List<Donator> data;
+    public DonatorRecycler(List<Donator> donators){
+        data = donators;
     }
 
 
     @NonNull
     @Override
-    public UserViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public DonatorViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.user_item_layout,
                 viewGroup,
                 false
         );
-        return new UserViewHolder(view);
+        return new DonatorViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-        User user = data.get(position);
+    public void onBindViewHolder(@NonNull DonatorViewHolder holder, int position) {
+        Donator user = data.get(position);
         holder.imageView.setImageBitmap(DataConverter.convertByteArray2Image(user.getImage()));
         holder.name.setText(user.getFullname());
+        holder.address.setText(user.getUsername());
         holder.dob.setText(String.valueOf(user.getDob()));
     }
 

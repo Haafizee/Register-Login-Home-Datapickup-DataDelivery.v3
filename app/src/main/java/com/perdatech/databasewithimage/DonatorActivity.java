@@ -1,8 +1,5 @@
 package com.perdatech.databasewithimage;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,20 +11,23 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.perdatech.databasewithimage.DataModel.ConsumerDAO;
-import com.perdatech.databasewithimage.DataModel.ConsumerDatabase;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.perdatech.databasewithimage.DataModel.DataConverter;
-import com.perdatech.databasewithimage.DataModel.Consumer;
+import com.perdatech.databasewithimage.DataModel.Donator;
+import com.perdatech.databasewithimage.DataModel.DonatorDAO;
+import com.perdatech.databasewithimage.DataModel.DonatorDatabase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class MainActivity extends AppCompatActivity {
+public class DonatorActivity extends AppCompatActivity {
 
     ImageView imageView;
     Bitmap bmpImage;
     EditText name, uName, pas, dob;
-    ConsumerDAO consumerDAO;
+    DonatorDAO donatorDAO;
     Button saveUser, showUser;
 
     @SuppressLint("MissingInflatedId")
@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        setSupportActionBar(setActionBar(););
-
         imageView = findViewById(R.id.userImage);
         bmpImage = null;
 
@@ -45,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
         uName = findViewById(R.id.userName);
         pas = findViewById(R.id.userPassword);
         dob = findViewById(R.id.userDob);
-        saveUser = findViewById(R.id.saveUser);
+        saveUser = (Button) findViewById(R.id.saveUser);
         showUser = findViewById(R.id.showUser);
 
-        consumerDAO = ConsumerDatabase.getDBInstance(this).consumerDAO();
+        donatorDAO = DonatorDatabase.getDBInstance(this).donatorDAO();
 
         saveUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,17 +58,17 @@ public class MainActivity extends AppCompatActivity {
 //                            Toast.LENGTH_SHORT
 //                    ).show();
                 }else {
-                    Consumer consumer = new Consumer();
-                    consumer.setFullname(name.getText().toString());
-                    consumer.setUsername(uName.getText().toString());
-                    consumer.setPassword(pas.getText().toString());
-                    consumer.setImage(DataConverter.convertImage2ByteArray(bmpImage));
+                    Donator donator = new Donator();
+                    donator.setFullname(name.getText().toString());
+                    donator.setUsername(uName.getText().toString());
+                    donator.setPassword(pas.getText().toString());
+                    donator.setImage(DataConverter.convertImage2ByteArray(bmpImage));
             try {
-                consumer.setDob(new SimpleDateFormat("dd/mm/yyyy").parse(dob.getText().toString()));
+                donator.setDob(new SimpleDateFormat("dd/mm/yyyy").parse(dob.getText().toString()));
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
-                    consumerDAO.insertUser(consumer);
+                    donatorDAO.insertDonator(donator);
 //                    Toast.makeText(
 //                            this,
 //                            "Insert Successfull",
@@ -84,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         showUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ShowConsumersActivity.class);
+                Intent intent = new Intent(DonatorActivity.this, ShowDonatorActivity.class);
                 startActivity(intent);
             }
         });

@@ -7,19 +7,20 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {User.class}, version = 1, exportSchema = false)
+@Database(entities = {Consumer.class}, version = 3, exportSchema = false)
 @TypeConverters(DataConverter.class)
-public abstract class UserDatabase extends RoomDatabase {
-    private static UserDatabase userDB = null;
-    public abstract UserDAO userDao();
+public abstract class ConsumerDatabase extends RoomDatabase {
+    private static ConsumerDatabase userDB = null;
+    public abstract ConsumerDAO consumerDAO();
 
-    public static synchronized UserDatabase getDBInstance(Context context){
+    public static synchronized ConsumerDatabase getDBInstance(Context context){
         if(userDB == null){
             userDB = Room.databaseBuilder(
                     context.getApplicationContext(),
-                    UserDatabase.class,
+                    ConsumerDatabase.class,
                     "user19b2"
             )
+                    .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build();
         }

@@ -6,13 +6,13 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "Users")
-public class User {
+@Entity(tableName = "Donators")
+public class Donator {
     @PrimaryKey(autoGenerate = true)
     int uid;
     @ColumnInfo(name = "Name")
     String fullname;
-    @ColumnInfo(name = "User_Name")
+    @ColumnInfo(name = "Donator_Name")
     String username;
     String password;
     Date dob;

@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.perdatech.databasewithimage.DataModel.UserDAO;
-import com.perdatech.databasewithimage.DataModel.UserDatabase;
+import com.perdatech.databasewithimage.DataModel.ConsumerDAO;
+import com.perdatech.databasewithimage.DataModel.ConsumerDatabase;
 
-public class ShowUsersActivity extends AppCompatActivity {
+public class ShowConsumersActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    UserDAO userDAO;
+    ConsumerDAO consumerDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +21,11 @@ public class ShowUsersActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.userRecyclerView);
 
-        userDAO = UserDatabase.getDBInstance(this).userDao();
+        consumerDAO = ConsumerDatabase.getDBInstance(this).consumerDAO();
 
-        UserRecycler userRecycler = new UserRecycler(userDAO.getAllUsers());
+        ConsumerRecycler consumerRecycler = new ConsumerRecycler(consumerDAO.getAllUsers());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(userRecycler);
+        recyclerView.setAdapter(consumerRecycler);
     }
 }

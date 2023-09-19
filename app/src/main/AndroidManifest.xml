@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -13,16 +13,13 @@
         android:theme="@style/Theme.DatabasewithImage"
         tools:targetApi="31">
         <activity
-            android:name=".UserViewHolder"
+            android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".UserRecycler"
+            android:name=".Register"
             android:exported="false" />
         <activity
-            android:name=".ShowUsersActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".Landing"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +27,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Home"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".ConsumerViewHolder"
+            android:exported="false" />
+        <activity
+            android:name=".ConsumerRecycler"
+            android:exported="false" />
+        <activity
+            android:name=".ShowConsumersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShowDonatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DonatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
